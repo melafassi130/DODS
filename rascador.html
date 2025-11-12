@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DODS - Rascador</title>
+  <style>
+     body {
+      font-family: 'Arial', sans-serif;
+      background-color: hsl(26, 100%, 87%);
+      margin: 0;
+      padding: 0;
+      color: #000000;
+    }
+
+    header {
+      background-color: #bd7d4c;
+      padding: 20px;
+      text-align: center;
+      color: #000000;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    nav {
+      background-color: #e1b89c;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: #000000;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    main{
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      padding: 40px;
+    }
+
+    .cont1{
+      max-width: 400px;
+    }
+
+    .cont2 img{
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    button{
+      background-color: #974c29;
+      border-radius: 20px;
+      height: 50px;
+      width: 200px;
+      border: 1px solid white;
+      font-size: 18px;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover{
+      background-color: #7a3c20;
+    }
+
+    footer {
+      background-color: #c28954;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+    }
+
+    .descripcion {
+      margin: 40px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>DODS</h1>
+  </header>
+  
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="carrito.html">Carrito 🛒</a>
+  </nav>
+
+  <main>
+    <div class="cont1">
+      <h1>Rascador para gatos</h1>
+      <h4>Precio: $150.300</h4>
+      <h4>Características:</h4>
+      <ul>
+        <li>Material resistente y duradero</li>
+        <li>Ideal para el entretenimiento del gato</li>
+        <li>Ayuda a mantener sus uñas sanas</li>
+      </ul>
+      <br>
+      <button onclick="agregarAlCarrito('Rascador para gatos', 150300)">Añadir al carrito</button>
+    </div>
+
+    <div class="cont2">
+      <img src="rascador.jpg" alt="Rascador para gatos" width="450" height="430">
+    </div>
+  </main>
+
+  <section class="descripcion">
+    <h3>Descripción</h3>
+    <p>
+      El rascador para gatos DODS está diseñado para ofrecer diversión, comodidad y bienestar a tu felino. 
+      Fabricado con materiales resistentes, permite que los gatos desgasten sus uñas de manera natural, 
+      evitando daños en muebles y objetos de tu hogar.
+    </p>
+    <p>
+      Además de funcional, cuenta con un diseño atractivo que se adapta a cualquier espacio. 
+      Es ideal para mantener a tu gato activo y feliz.
+    </p>
+  </section>
+
+  <footer>
+    © 2025 DODS. Todos los derechos reservados.
+  </footer>
+
+  <script>
+    function agregarAlCarrito(nombre, precio) {
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      carrito.push({ nombre, precio });
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+      alert(nombre + " agregado al carrito 🛒");
+    }
+  </script>
+
+</body>
+</html>
