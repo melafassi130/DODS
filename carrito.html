@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Carrito - DODS</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: hsla(342, 97%, 73%, 0.638);
+      margin: 0;
+      padding: 0;
+      color: #000000;
+    }
+
+    header {
+      background-color: #ff6b86c4;
+      padding: 20px;
+      text-align: center;
+      color: #000000;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    nav {
+      background-color:#ffffff;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: #000000;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+    
+    h1 {
+      color: #d63f5a;
+    }
+    .producto {
+      background: #fff;
+      margin: 10px 0;
+      padding: 15px;
+      border: 1px solid rgb(255, 255, 255);
+      border-radius: 8px;
+    }
+    .total {
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 1.2em;
+    }
+    button {
+      margin-top: 10px;
+      padding: 8px 15px;
+      border: none;
+      background: #d63f5a;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #e0526c;
+    }
+  </style>
+  <body>
+    <header>
+      <h1 style=" color: hsl(342, 82%, 57%); -webkit-text-stroke: 2px white;">DODS</h1>
+    </header>
+  </div>
+  
+  <script>
+  </script>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="contactos.html">Contacto</a>
+      <a href="carrito.html">Carrito</a>
+      
+    </nav>
+</head>
+<body>
+  <h1>Tu Carrito 🛒</h1>
+  <div id="listaCarrito"></div>
+  <p class="total" id="total"></p>
+  <button onclick="finalizar()">Finalizar compra</button>
+  <button onclick="vaciarCarrito()">Vaciar carrito</button>
+
+  <script>
+
+    function finalizar(){
+      alert("COMPRA REALIZADA");
+    }
+    function mostrarCarrito() {
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      let lista = document.getElementById("listaCarrito");
+      let total = 0;
+      lista.innerHTML = "";
+
+      if (carrito.length === 0) {
+        lista.innerHTML = "<p>El carrito está vacío.</p>";
+      } else {
+        carrito.forEach((item, index) => {
+          total += item.precio;
+          lista.innerHTML += `
+            <div class="producto">
+              <p>${item.nombre} - $${item.precio.toLocaleString()}</p>
+              <button onclick="eliminarDelCarrito(${index})">Eliminar</button>
+            </div>
+          `;
+        });
+      }
+
+      document.getElementById("total").innerText = "Total: $" + total.toLocaleString();
+    }
+
+    function vaciarCarrito() {
+      localStorage.removeItem("carrito");
+      mostrarCarrito();
+    }
+
+    function eliminarDelCarrito(indice) {
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      carrito.splice(indice, 1);
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+      mostrarCarrito();
+    }
+
+    mostrarCarrito();
+  </script>
+</body>
+</html>
